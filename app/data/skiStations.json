@@ -1,0 +1,11 @@
+[
+  { "name": "Morzine", "region": "Haute-Savoie" },
+  { "name": "Avoriaz", "region": "Haute-Savoie" },
+  { "name": "Les Gets", "region": "Haute-Savoie" },
+  { "name": "Samoëns", "region": "Haute-Savoie" },
+  { "name": "La Clusaz", "region": "Haute-Savoie" },
+  { "name": "Megève", "region": "Haute-Savoie" },
+  { "name": "Chamonix", "region": "Haute-Savoie" },
+  { "name": "Flaine", "region": "Haute-Savoie" },
+  { "name": "Courchevel", "region": "Savoie" }
+]

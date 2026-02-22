@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#2a2a2a"/>
+    </linearGradient>
+    <linearGradient id="snow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e5e7eb"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+
+  <!-- montagnes lointaines sombres -->
+  <path d="M0 590L210 520L360 560L620 430L860 560L1120 420L1390 550L1640 500L1920 560V1080H0Z" fill="#262626" opacity="0.85"/>
+  <path d="M0 650L220 590L420 640L670 510L920 660L1200 500L1460 640L1710 600L1920 660V1080H0Z" fill="#0f0f0f" opacity="0.9"/>
+
+  <!-- montagne centrale jaune -->
+  <path d="M540 680L760 430L930 590L1080 360L1320 680Z" fill="#ffb600" opacity="0.96"/>
+  <path d="M760 430L930 590L1080 360L980 620Z" fill="#f5a800" opacity="0.9"/>
+
+  <!-- neige premier plan -->
+  <path d="M0 760L170 710L330 770L500 730L700 790L920 740L1140 800L1380 730L1610 810L1920 760V1080H0Z" fill="url(#snow)"/>
+  <path d="M0 825L220 790L470 845L740 805L990 860L1220 815L1480 865L1710 835L1920 875V1080H0Z" fill="#f8fafc" opacity="0.95"/>
+</svg>

@@ -2,25 +2,343 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
+  --brand: #ffb600;
+  --blue: #049de1;
+  --ink: #111827;
+  --muted: #f5f7fb;
+  --border: #e6e8ef;
+  --font-jakarta: "Avenir Next", "Segoe UI", "Helvetica Neue", "Trebuchet MS", sans-serif;
+  --font-bebas: "SF Pro Display", "Avenir Next Demi Bold", "Segoe UI Semibold", "Helvetica Neue", sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-jakarta);
+  --font-display: var(--font-bebas);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =========================================================
+   STOP AU SCROLL HORIZONTAL (mobile + global)
+========================================================= */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
+  position: relative;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-jakarta), "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: capitalize;
+}
+
+.subtitle-case {
+  text-transform: capitalize;
+}
+
+/* =========================================================
+   Lisibilité Globale (Toutes Les Pages)
+========================================================= */
+main p,
+main li {
+  color: #334155;
+  line-height: 1.72;
+  font-size: clamp(1rem, 0.2vw + 0.96rem, 1.08rem);
+  font-weight: 500;
+  letter-spacing: 0.003em;
+}
+
+main h1 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+main h2 {
+  font-weight: 760;
+  letter-spacing: -0.015em;
+}
+
+main h3 {
+  font-weight: 720;
+  letter-spacing: -0.01em;
+}
+
+main .text-slate-600 {
+  color: #334155 !important;
+}
+
+main .text-slate-500 {
+  color: #475569 !important;
+}
+
+/* Priorité de lisibilité sur sections fond noir */
+.on-dark,
+.on-dark p,
+.on-dark li,
+.on-dark .text-slate-600,
+.on-dark .text-slate-500,
+.on-dark .text-white\/80,
+.on-dark .text-white\/85 {
+  color: #ffffff !important;
+}
+
+/* équilibre "entre gras et fin" pour les classes utilitaires existantes */
+.font-black {
+  font-weight: 800 !important;
+}
+
+.font-extrabold {
+  font-weight: 760 !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+iframe,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================================================
+   Taxi du Môle – Styles globaux du site
+========================================================= */
+
+.taxi-page {
+  color: var(--ink);
+}
+
+.taxi-page .taxi-top-0 h1,
+.taxi-page .taxi-top-0 h2,
+.taxi-page .taxi-top-0 h3,
+.taxi-page .taxi-top-0 h4,
+.taxi-page .taxi-top-0 h5,
+.taxi-page .taxi-top-0 h6,
+.taxi-page .taxi-top-0 p {
+  margin-top: 0;
+}
+
+.taxi-page .taxi-bottom-0 p {
+  margin-bottom: 0;
+}
+
+.taxi-page .headline-soft {
+  background-color: rgb(4 157 225 / 10%);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  display: inline-block;
+}
+
+.taxi-page .bracketed > *::before,
+.taxi-page .bracketed > *::after {
+  color: var(--brand);
+  display: inline-block;
+  line-height: 1em;
+  position: relative;
+  top: -1px;
+}
+
+.taxi-page .bracketed > *::before {
+  content: "[";
+  margin-right: 4px;
+}
+
+.taxi-page .bracketed > *::after {
+  content: "]";
+  margin-left: 4px;
+}
+
+.taxi-page .chip {
+  display: inline-block;
+  background: var(--muted);
+  border: 1px dashed var(--border);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.taxi-page a:focus,
+.taxi-page button:focus,
+.taxi-page [tabindex]:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.taxi-page .tag-aeroport,
+.taxi-page .tag-station,
+.taxi-page .tag-montagne,
+.taxi-page .tag-vallee-arve,
+.taxi-page .tag-gare-bonneville-74130,
+.taxi-page .tag-montagne-clusaz {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  line-height: 1;
+  background: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.taxi-page .tag-gare-bonneville-74130 {
+  border-color: rgb(255 182 0 / 50%);
+}
+
+.taxi-page .tag-station {
+  border-color: rgb(4 157 225 / 50%);
+}
+
+.taxi-page .tag-montagne-clusaz {
+  border-color: rgb(16 185 129 / 50%);
+}
+
+.taxi-page .tag-vallee-arve {
+  border-color: rgb(99 102 241 / 50%);
+}
+
+.trust-strip {
+  border-bottom: 1px solid rgb(226 232 240);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  border: 1px solid rgb(15 23 42 / 10%);
+  background: #fff;
+  color: #0f172a;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 0.7rem;
+}
+
+.neo-card {
+  border: 1px solid rgb(15 23 42 / 10%);
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0 1px 0 rgb(15 23 42 / 2%), 0 20px 40px -32px rgb(15 23 42 / 35%);
+}
+
+.template-label {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.32rem 0.72rem;
+}
+
+.template-label.is-brand {
+  background: #ffb600;
+  color: #000;
+}
+
+.template-trust-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: 1px solid rgb(15 23 42 / 12%);
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 18px 35px -30px rgb(15 23 42 / 55%);
+  padding: 0.45rem 0.7rem;
+}
+
+.template-trust-seal {
+  width: 3.2rem;
+  height: 3.2rem;
+  flex: none;
+}
+
+.template-trust-text {
+  margin-top: 0.18rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #111827;
+}
+
+.road-scroll-bg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: clamp(2px, 1.3vw, 16px);
+  width: clamp(68px, 7vw, 98px);
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.82;
+}
+
+.road-scroll-bg svg {
+  width: 100%;
+  height: 100%;
+}
+
+.road-scroll-shadow {
+  fill: none;
+  stroke: rgb(255 182 0 / 22%);
+  stroke-width: 2.3;
+  stroke-linecap: round;
+}
+
+.road-scroll-path {
+  fill: none;
+  stroke: #ffb600;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 14 10;
+  transition: stroke-dashoffset 0.06s linear;
+  filter: drop-shadow(0 0 6px rgb(255 182 0 / 62%));
+}
+
+.road-scroll-dot {
+  fill: #000000;
+  filter: drop-shadow(0 0 8px rgb(0 0 0 / 55%));
+}
+
+main,
+header,
+footer {
+  position: relative;
+  z-index: 10;
+}
+
+.input {
+  @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#049de1] focus:ring-2 focus:ring-[#049de1]/20;
+}
+
+.textarea {
+  @apply w-full min-h-[110px] rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#049de1] focus:ring-2 focus:ring-[#049de1]/20;
 }
