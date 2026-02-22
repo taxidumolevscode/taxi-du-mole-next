@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import RoadScrollBackground from "./components/RoadScrollBackground";
-import TrustBadges from "./components/TrustBadges";
 import "./globals.css";
 
 const siteName = "Taxi du Môle";
@@ -81,7 +80,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <TrustBadges />
         {children}
       </body>
     </html>

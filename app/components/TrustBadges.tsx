@@ -18,7 +18,6 @@ export default function TrustBadges() {
   return (
     <div className="trust-strip">
       <div className="mx-auto flex max-w-7xl flex-wrap gap-2 px-5 py-2">
-        <span className="template-label is-brand">Template Premium</span>
         {badges.map((badge) => (
           <span key={badge} className="trust-badge">
             <ShieldIcon />
