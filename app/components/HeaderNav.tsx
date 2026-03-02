@@ -17,36 +17,36 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     href: "/",
-    label: "ACCUEIL",
+    label: "Accueil",
     children: [
-      { href: "/taxi-conventionne", label: "Taxi conventionné" },
-      { href: "/transport-touristique", label: "Transport touristique" },
-      { href: "/gares-ferroviaires", label: "Gares ferroviaires" },
-      { href: "/station-de-ski", label: "Station de ski" },
+      { href: "/taxi-conventionne", label: "Taxi CPAM" },
+      { href: "/transport-touristique", label: "Tourisme" },
+      { href: "/gares-ferroviaires", label: "Gares" },
+      { href: "/station-de-ski", label: "Stations ski" },
       {
         href: "/transport-touristique-haute-savoie",
-        label: "Transport touristique Haute-Savoie",
+        label: "Haute-Savoie",
       },
-      { href: "/transport-geneve", label: "Transport vers/depuis Genève" },
+      { href: "/transport-geneve", label: "Geneve" },
     ],
   },
   {
     href: "/type-de-trajet",
-    label: "TYPE DE TRAJET",
+    label: "Trajets",
     children: [
-      { href: "/type-de-trajet/aeroport-gares", label: "Aéroport Genève & gares" },
-      { href: "/type-de-trajet/hotel-loisirs", label: "Hôtel & loisirs" },
+      { href: "/type-de-trajet/aeroport-gares", label: "Aeroport & gares" },
+      { href: "/type-de-trajet/hotel-loisirs", label: "Hotel & loisirs" },
       { href: "/type-de-trajet/long-trajet", label: "Long trajet" },
-      { href: "/type-de-trajet/stations-de-ski", label: "Stations de ski" },
+      { href: "/type-de-trajet/stations-de-ski", label: "Stations" },
       {
         href: "/type-de-trajet/prive-entreprises-scolaire",
-        label: "Privé / entreprises / scolaire",
+        label: "Prive & pro",
       },
     ],
   },
-  { href: "/ski-transfert", label: "SKI TRANSFERT" },
-  { href: "/tarifs", label: "TARIFS" },
-  { href: "/reserver-en-ligne", label: "RÉSERVER EN LIGNE" },
+  { href: "/ski-transfert", label: "Ski" },
+  { href: "/tarifs", label: "Tarifs" },
+  { href: "/reserver-en-ligne", label: "Reservation" },
 ];
 
 export default function HeaderNav() {
@@ -59,7 +59,7 @@ export default function HeaderNav() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/70 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-5">
         <Link href="/" className="inline-flex items-center" aria-label="Accueil Taxi du Môle">
           <div className="relative h-12 w-40 sm:h-14 sm:w-44">
@@ -74,25 +74,25 @@ export default function HeaderNav() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-6 xl:flex">
+        <nav className="hidden items-center gap-5 xl:flex">
           {navItems.map((item) => (
             <div key={item.href} className="group relative">
               <Link
                 href={item.href}
-                className={`text-xs font-extrabold uppercase tracking-[0.08em] transition ${
-                  isActive(item.href) ? "text-black" : "text-slate-600 hover:text-black"
+                className={`whitespace-nowrap text-xs font-extrabold uppercase tracking-[0.06em] leading-none transition ${
+                  isActive(item.href) ? "text-slate-950" : "text-slate-600 hover:text-slate-950"
                 }`}
               >
                 {item.label}
               </Link>
 
               {item.children?.length ? (
-                <div className="pointer-events-none absolute left-0 top-full z-40 mt-3 w-72 rounded-2xl border border-slate-200 bg-white p-2 opacity-0 shadow-xl transition group-hover:pointer-events-auto group-hover:opacity-100">
+                <div className="pointer-events-none absolute left-0 top-full z-40 mt-3 w-72 rounded-2xl border border-slate-200/75 bg-white/96 p-2 opacity-0 shadow-2xl backdrop-blur group-hover:pointer-events-auto group-hover:opacity-100">
                   {item.children.map((child) => (
                     <Link
                       key={child.href}
                       href={child.href}
-                      className="block rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-black"
+                      className="block rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-slate-950"
                     >
                       {child.label}
                     </Link>
@@ -105,7 +105,7 @@ export default function HeaderNav() {
 
         <div className="hidden items-center gap-2 xl:flex">
           <a
-            className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
+            className="whitespace-nowrap rounded-full border border-slate-300/80 bg-white/85 px-5 py-2 text-sm font-semibold text-slate-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition hover:bg-white"
             href={`tel:${phone}`}
             aria-label={`Contactez-Nous au ${phone}`}
           >
@@ -113,7 +113,7 @@ export default function HeaderNav() {
             <span className="sr-only">{phone}</span>
           </a>
           <Link
-            className="rounded-full bg-[#ffb600] px-5 py-2 text-sm font-extrabold text-black transition hover:brightness-95"
+            className="rounded-full border border-amber-300/40 bg-gradient-to-r from-amber-300 to-amber-400 px-5 py-2 text-sm font-extrabold text-black shadow-[0_14px_28px_-20px_rgba(161,98,7,0.8)] transition hover:brightness-105"
             href="/reserver-en-ligne"
           >
             Réserver
@@ -122,7 +122,7 @@ export default function HeaderNav() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300 text-slate-800 xl:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-300/80 bg-white/85 text-slate-800 xl:hidden"
           aria-label="Ouvrir le menu"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((value) => !value)}
@@ -148,10 +148,10 @@ export default function HeaderNav() {
       </div>
 
       {menuOpen && (
-        <div className="border-t border-slate-200 bg-white px-5 py-4 xl:hidden">
+        <div className="border-t border-slate-200/75 bg-white/92 px-5 py-4 backdrop-blur-xl xl:hidden">
           <nav className="grid gap-2">
             {navItems.map((item) => (
-              <div key={item.href} className="rounded-xl border border-slate-200 p-2">
+              <div key={item.href} className="rounded-xl border border-slate-200/80 bg-white/90 p-2">
                 <Link
                   href={item.href}
                   onClick={() => setMenuOpen(false)}

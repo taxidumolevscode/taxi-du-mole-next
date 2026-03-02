@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import RoadScrollBackground from "./components/RoadScrollBackground";
 import "./globals.css";
 
 const siteName = "Taxi du Môle";
@@ -74,8 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="fr">
-      <body className="min-h-screen bg-white text-slate-900 antialiased">
-        <RoadScrollBackground />
+      <body className="min-h-screen text-slate-900 antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -89,7 +89,7 @@ export default function Home() {
       <HeaderNav />
       <SeoJsonLd data={jsonLd} />
 
-      <main className="bg-white text-slate-900">
+      <main className="text-slate-900">
         <FoldMountainHero
           logoSrc={floatingLogo}
           backgroundSrc={mountainBg}
@@ -99,13 +99,13 @@ export default function Home() {
           phone={phone}
         />
 
-        <section className="border-b border-slate-200 bg-[radial-gradient(50rem_20rem_at_80%_0%,rgba(255,182,0,.16),transparent_60%)]">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 pb-14 pt-14 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:pt-20">
+        <section>
+          <div className="tdm-shell grid gap-10 pb-14 pt-14 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:pt-20">
             <div>
-              <p className="template-label is-brand">
+              <p className="tdm-kicker">
                 Taxi Du Môle - Bonneville 74130
               </p>
-              <h1 className="mt-4 font-[var(--font-bebas)] text-6xl leading-[0.88] tracking-tight text-black sm:text-7xl md:text-8xl">
+              <h1 className="tdm-display mt-4 text-6xl text-slate-950 sm:text-7xl md:text-8xl">
                 Soyez la bienvenue
               </h1>
 
@@ -130,24 +130,24 @@ export default function Home() {
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
                   href="/reserver-en-ligne"
-                  className="rounded-full bg-black px-6 py-3 text-sm font-extrabold uppercase tracking-[0.06em] text-white transition hover:bg-slate-800"
+                  className="tdm-btn tdm-btn-primary"
                 >
-                  Réserver en ligne
+                  Réserver En Ligne
                 </Link>
                 <Link
                   href="/tarifs"
-                  className="rounded-full bg-[#ffb600] px-6 py-3 text-sm font-extrabold uppercase tracking-[0.06em] text-black transition hover:brightness-95"
+                  className="tdm-btn tdm-btn-accent"
                 >
-                  Voir les tarifs
+                  Voir Les Tarifs
                 </Link>
               </div>
             </div>
 
-            <div className="rounded-[2rem] bg-slate-50 p-6 ring-1 ring-slate-200">
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+            <div className="tdm-surface p-6">
+              <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-slate-500">
                 Image Hero (modifiable)
               </p>
-              <div className="mt-4 flex h-80 items-center justify-center rounded-2xl bg-white ring-1 ring-slate-200">
+              <div className="mt-4 flex h-80 items-center justify-center rounded-2xl bg-[linear-gradient(155deg,#ffffff_0%,#eef4ff_100%)] ring-1 ring-slate-200">
                 <Image
                   src={heroImage}
                   alt="Taxi du Môle à Bonneville"
@@ -160,26 +160,26 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-5 py-14">
+        <section className="tdm-shell py-14">
           <div className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-              <h2 className="text-xl font-black text-black">Un service idéal</h2>
+            <div className="tdm-surface p-6">
+              <h2 className="text-xl font-black text-slate-950">Un service idéal</h2>
               <p className="mt-2 text-sm text-slate-600">Ponctualité, sécurité, confort et disponibilité 24/7.</p>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-              <h2 className="text-xl font-black text-black">Une facilité d&apos;usage</h2>
+            <div className="tdm-surface p-6">
+              <h2 className="text-xl font-black text-slate-950">Une facilité d&apos;usage</h2>
               <p className="mt-2 text-sm text-slate-600">Réservation simple, confirmation rapide et suivi clair.</p>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-              <h2 className="text-xl font-black text-black">Un équipement fiable</h2>
+            <div className="tdm-surface p-6">
+              <h2 className="text-xl font-black text-slate-950">Un équipement fiable</h2>
               <p className="mt-2 text-sm text-slate-600">Véhicules adaptés montagne et paiements modernes à bord.</p>
             </div>
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-7xl gap-6 px-5 pb-14 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
-            <h2 className="text-4xl font-black tracking-tight text-black">Pages de service</h2>
+        <section className="tdm-shell grid gap-6 pb-14 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="tdm-surface p-7">
+            <h2 className="tdm-display text-4xl text-slate-950">Pages de service</h2>
             <p className="mt-2 text-slate-600">
               Découvrez nos pages détaillées pour le taxi conventionné, les gares ferroviaires,
               les transports touristiques et les trajets vers Genève.
@@ -190,7 +190,7 @@ export default function Home() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-800 ring-1 ring-slate-200 transition hover:bg-slate-200"
+                  className="rounded-full border border-slate-200/80 bg-white/90 px-4 py-2 text-sm font-semibold text-slate-800 transition hover:border-slate-300 hover:bg-white"
                 >
                   {item.label}
                 </Link>
@@ -199,10 +199,10 @@ export default function Home() {
 
             <div className="mt-7 grid gap-4 md:grid-cols-2">
               {trajetLinks.map((item) => (
-                <article key={item.href} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                  <h3 className="text-xl font-black text-black">{item.title}</h3>
+                <article key={item.href} className="rounded-2xl border border-slate-200/80 bg-white/88 p-5">
+                  <h3 className="text-xl font-black text-slate-950">{item.title}</h3>
                   <p className="mt-2 text-sm text-slate-600">{item.description}</p>
-                  <Link href={item.href} className="mt-4 inline-block text-sm font-bold text-[#b07a00] hover:underline">
+                  <Link href={item.href} className="tdm-link mt-4">
                     Voir la page
                   </Link>
                 </article>
@@ -210,9 +210,9 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="rounded-3xl bg-slate-50 p-6 ring-1 ring-slate-200">
-            <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Image Section (modifiable)</p>
-            <div className="mt-4 flex h-64 items-center justify-center rounded-2xl bg-white ring-1 ring-slate-200">
+          <div className="tdm-surface p-6">
+            <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-slate-500">Image Section (modifiable)</p>
+            <div className="mt-4 flex h-64 items-center justify-center rounded-2xl bg-[linear-gradient(155deg,#ffffff_0%,#eef4ff_100%)] ring-1 ring-slate-200">
               <Image
                 src={sectionImage}
                 alt="Transferts taxi Haute-Savoie"
@@ -224,9 +224,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-5 pb-14">
-          <div className="on-dark rounded-3xl bg-black p-7 text-white">
-            <h2 className="text-4xl font-black tracking-tight">Formulaire de réservation</h2>
+        <section className="tdm-shell pb-14">
+          <div className="on-dark tdm-surface-dark p-7 text-white">
+            <h2 className="tdm-display text-4xl">Formulaire de réservation</h2>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               <div className="rounded-2xl border border-white/20 bg-white/5 p-5">
                 <h3 className="mt-2 text-xl font-black">Remplissez notre formulaire</h3>

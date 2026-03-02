@@ -217,27 +217,48 @@ export default function BookingForm() {
         <div className="grid gap-3 md:grid-cols-2">
           <div>
             <label className="text-xs font-bold uppercase tracking-[0.08em] text-slate-600">Nom / Prénom</label>
-            <input className="input mt-1" value={data.name} onChange={onChange("name")} required />
+            <input
+              className="input mt-1"
+              value={data.name}
+              onChange={onChange("name")}
+              placeholder="Ex: Jean Dupont"
+              required
+            />
           </div>
 
           <div>
             <label className="text-xs font-bold uppercase tracking-[0.08em] text-slate-600">Téléphone</label>
-            <input className="input mt-1" value={data.phone} onChange={onChange("phone")} required />
+            <input
+              className="input mt-1"
+              value={data.phone}
+              onChange={onChange("phone")}
+              placeholder="Ex: +33 6 12 34 56 78"
+              required
+            />
           </div>
 
           <div>
             <label className="text-xs font-bold uppercase tracking-[0.08em] text-slate-600">Email</label>
-            <input className="input mt-1" type="email" value={data.email} onChange={onChange("email")} required />
+            <input
+              className="input mt-1"
+              type="email"
+              value={data.email}
+              onChange={onChange("email")}
+              placeholder="Ex: jean.dupont@email.com"
+              required
+            />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="text-xs font-bold uppercase tracking-[0.08em] text-slate-600">Date</label>
               <input className="input mt-1" type="date" value={data.date} onChange={onChange("date")} required />
+              <p className="mt-1 text-[11px] font-medium text-slate-400/80">Ex: 24/12/2026</p>
             </div>
             <div>
               <label className="text-xs font-bold uppercase tracking-[0.08em] text-slate-600">Heure</label>
               <input className="input mt-1" type="time" value={data.time} onChange={onChange("time")} required />
+              <p className="mt-1 text-[11px] font-medium text-slate-400/80">Ex: 14:30</p>
             </div>
           </div>
         </div>
@@ -245,17 +266,34 @@ export default function BookingForm() {
         <div className="grid gap-3">
           <div>
             <label className="text-xs font-bold uppercase tracking-[0.08em] text-slate-600">Adresse De Prise En Charge</label>
-            <input className="input mt-1" value={data.pickup} onChange={onChange("pickup")} required />
+            <input
+              className="input mt-1"
+              value={data.pickup}
+              onChange={onChange("pickup")}
+              placeholder="Ex: Gare de Bonneville, 74130 Bonneville"
+              required
+            />
           </div>
 
           <div>
             <label className="text-xs font-bold uppercase tracking-[0.08em] text-slate-600">Destination</label>
-            <input className="input mt-1" value={data.destination} onChange={onChange("destination")} required />
+            <input
+              className="input mt-1"
+              value={data.destination}
+              onChange={onChange("destination")}
+              placeholder="Ex: Avoriaz 1800, 74110 Morzine"
+              required
+            />
           </div>
 
           <div>
             <label className="text-xs font-bold uppercase tracking-[0.08em] text-slate-600">Informations Complémentaires</label>
-            <textarea className="textarea mt-1" value={data.infos} onChange={onChange("infos")} />
+            <textarea
+              className="textarea mt-1"
+              value={data.infos}
+              onChange={onChange("infos")}
+              placeholder="Ex: 2 adultes, 2 enfants, 4 valises, 2 skis, siège enfant nécessaire."
+            />
           </div>
         </div>
 
