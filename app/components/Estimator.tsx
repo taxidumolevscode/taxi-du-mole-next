@@ -48,12 +48,14 @@ declare global {
 
 const phone = process.env.NEXT_PUBLIC_TDM_PHONE || "+33680423031";
 const REQUEST_TIMEOUT_MS = 9000;
+const TDM_GOOGLE_KEY =
+  process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "AIzaSyAk3EysKL2LMn3rZuXx55TEzTflNEsOZlY";
 
 function rates() {
   const h = new Date().getHours();
   return h >= 19 || h < 8
     ? { label: "Tarif Nuit", pricePerKm: 3.66, baseFare: 3 }
-    : { label: "Tarif Jour", pricePerKm: 2.44, baseFare: 3 };
+    : { label: "Tarif Jour", pricePerKm: 2.4, baseFare: 3 };
 }
 
 function withTimeout<T>(promise: Promise<T>, ms: number) {
@@ -82,8 +84,7 @@ function loadGoogleMaps() {
       return;
     }
 
-    const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-    if (!key) {
+    if (!TDM_GOOGLE_KEY) {
       reject(new Error("missing_key"));
       return;
     }
@@ -111,7 +112,7 @@ function loadGoogleMaps() {
 
     window.__TDM_GMAPS_LOADING__ = true;
     const s = document.createElement("script");
-    s.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&libraries=places`;
+    s.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(TDM_GOOGLE_KEY)}&libraries=places`;
     s.async = true;
     s.defer = true;
     s.onload = () => resolve();
@@ -190,11 +191,11 @@ export default function Estimator() {
 
         if (mounted) {
           setGmapsReady(true);
-          setOutput("Google Maps chargé");
+          setOutput("");
         }
       } catch {
         if (mounted) {
-          setOutput("Google Maps ne charge pas. Contactez-Nous.");
+          setOutput("Google Maps ne charge pas (cache/adblock/clé). Appelez le 06 80 42 30 31.");
         }
       }
     };
@@ -291,7 +292,7 @@ export default function Estimator() {
       }
 
       if (dm.status !== "OK") {
-        setOutput(`Erreur Google Distance Matrix : ${dm.status}. Contactez-Nous.`);
+        setOutput(`Erreur Google Distance Matrix : ${dm.status} — Appelez le 06 80 42 30 31.`);
         setLoading(false);
         return;
       }
@@ -300,7 +301,7 @@ export default function Estimator() {
       const elStatus = el?.status;
 
       if (!el || elStatus !== "OK") {
-        setOutput(`Itinéraire introuvable : ${elStatus || "NO_RESULT"}.`);
+        setOutput(`Itinéraire introuvable : ${elStatus || "NO_RESULT"} — Vérifiez départ/destination.`);
         setLoading(false);
         return;
       }
@@ -317,7 +318,7 @@ export default function Estimator() {
 
       setOutput(`${r.label} • Distance : ${el.distance.text} • Tarif estimé : ${price.toFixed(2)} €`);
     } catch {
-      setOutput("Aucune réponse Google. Réessayez ou Contactez-Nous.");
+      setOutput("Aucune réponse Google (réseau mobile/cache). Réessayez ou appelez le 06 80 42 30 31.");
     } finally {
       setLoading(false);
     }
@@ -366,7 +367,7 @@ export default function Estimator() {
         <button
           type="button"
           onClick={calculateFare}
-          disabled={loading || !gmapsReady}
+          disabled={loading}
           className="rounded-2xl bg-[#ffb600] px-5 py-3 text-base font-extrabold text-black transition hover:brightness-95 disabled:opacity-60"
         >
           {loading ? "Calcul..." : "Voir Les Prix"}

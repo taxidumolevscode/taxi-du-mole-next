@@ -124,7 +124,9 @@ function CheckIcon() {
 }
 
 export default function BookingForm() {
-  const ENDPOINT = process.env.NEXT_PUBLIC_RESERVATION_ENDPOINT || "";
+  const ENDPOINT =
+    process.env.NEXT_PUBLIC_RESERVATION_ENDPOINT ||
+    "https://script.google.com/macros/s/AKfycbwSWOIRmJgaKRV2wYBfXxqht_A-OQiS9ob0J3SxyFNtbHleMF0v1BlQZWsWhL2IXBth/exec";
 
   const [data, setData] = useState<FormState>(initialState);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -159,19 +161,18 @@ export default function BookingForm() {
     }
 
     try {
-      const body = new URLSearchParams();
+      const body = new FormData();
       Object.entries(data).forEach(([k, v]) => body.append(k, v));
-
       body.append("email_subject", buildEmailSubject(data));
       body.append("email_html", buildEmailHtml(data));
 
-      const res = await fetch(ENDPOINT, {
+      await fetch(ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-        body: body.toString(),
+        body,
+        redirect: "follow",
+        mode: "no-cors",
       });
-
-      if (!res.ok) throw new Error("Bad response");
+      // In no-cors mode, response status is opaque; no exception = request sent.
       setStatus("success");
       setData(initialState);
     } catch {
