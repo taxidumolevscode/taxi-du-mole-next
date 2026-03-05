@@ -31,7 +31,7 @@ const initialState: WizardData = {
   passengers: "1",
   luggage: "0",
   notes: "",
-  paymentMethod: "online_deposit",
+  paymentMethod: "pay_onboard",
 };
 
 const stepLabels = [
