@@ -47,6 +47,7 @@ const navItems: NavItem[] = [
   { href: "/ski-transfert", label: "Ski" },
   { href: "/tarifs", label: "Tarifs" },
   { href: "/reserver-en-ligne", label: "Reservation" },
+  { href: "/espace-client", label: "Espace Client" },
 ];
 
 export default function HeaderNav() {

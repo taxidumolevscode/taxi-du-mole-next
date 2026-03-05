@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import BookingForm from "../components/BookingForm";
+import BookingTunnelV2 from "../components/BookingTunnelV2";
 import HeaderNav from "../components/HeaderNav";
 import SeoJsonLd from "../components/SeoJsonLd";
 import SiteFooter from "../components/SiteFooter";
@@ -51,9 +51,12 @@ export default function ReserverEnLignePage() {
               <p className="mt-3 text-sm text-slate-500">
                 Paiements acceptés: Espèces, CB, Paypal, Apple Pay, Sans Contact.
               </p>
+              <p className="mt-3 text-sm text-slate-500">
+                Espace client: suivi des demandes et statut de paiement.
+              </p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-2">
-              <BookingForm />
+              <BookingTunnelV2 />
             </div>
           </div>
         </section>

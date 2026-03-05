@@ -6,6 +6,7 @@ import FoldMountainHero from "./components/FoldMountainHero";
 import HeaderNav from "./components/HeaderNav";
 import SeoJsonLd from "./components/SeoJsonLd";
 import SiteFooter from "./components/SiteFooter";
+import StickyMobileCta from "./components/StickyMobileCta";
 import { buildPageMetadata, buildServiceJsonLd } from "./lib-seo";
 
 const phone = process.env.NEXT_PUBLIC_TDM_PHONE || "+33680423031";
@@ -60,6 +61,44 @@ const homeServiceLinks = [
   { label: "Transport vers ou depuis Genève", href: "/transport-geneve" },
 ];
 
+const serviceZones = [
+  {
+    title: "Bonneville & Vallée de l'Arve",
+    description: "Départs rapides depuis Bonneville, Cluses, Sallanches, Passy, Annemasse.",
+  },
+  {
+    title: "Aéroport / Gares de Genève",
+    description: "Transfert direct vers/depuis GVA, Cornavin, Eaux-Vives et secteur Suisse frontalier.",
+  },
+  {
+    title: "Stations de ski 4 saisons",
+    description: "Morzine, Avoriaz, Les Gets, Samoëns, La Clusaz, Chamonix, Megève et alentours.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Combien de temps à l'avance faut-il réserver un taxi ?",
+    answer:
+      "Nous recommandons de réserver dès que possible. Pour les trajets urgents, appelez directement pour une prise en charge immédiate selon disponibilité.",
+  },
+  {
+    question: "Assurez-vous les transferts vers l'aéroport de Genève ?",
+    answer:
+      "Oui, nous couvrons les transferts depuis et vers l'aéroport de Genève, ainsi que les gares et hôtels en Haute-Savoie.",
+  },
+  {
+    question: "Proposez-vous les paiements CB et sans contact ?",
+    answer:
+      "Oui. Vous pouvez régler en espèces, CB, Apple Pay, PayPal et sans contact selon votre préférence.",
+  },
+  {
+    question: "Prenez-vous en charge les trajets de nuit et tôt le matin ?",
+    answer:
+      "Oui, nous opérons 24/7 avec des véhicules adaptés aux conditions montagne, été comme hiver.",
+  },
+];
+
 export const metadata: Metadata = buildPageMetadata({
   title: "Taxi Bonneville 74130 - Transferts Haute-Savoie et Genève",
   description:
@@ -76,20 +115,33 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function Home() {
-  const jsonLd = buildServiceJsonLd({
+  const serviceJsonLd = buildServiceJsonLd({
     pagePath: "/",
     pageTitle: "Taxi Bonneville 74130 - Transferts Haute-Savoie et Genève",
     pageDescription:
       "Taxi Du Môle à Bonneville pour transferts gares, aéroport Genève, stations de ski, trajets touristiques et conventionnés en Haute-Savoie.",
     serviceType: "Service de taxi local et transferts",
   });
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
 
   return (
     <>
       <HeaderNav />
-      <SeoJsonLd data={jsonLd} />
+      <SeoJsonLd data={serviceJsonLd} />
+      <SeoJsonLd data={faqJsonLd} />
 
-      <main className="text-slate-900">
+      <main className="pb-28 text-slate-900 md:pb-0">
         <FoldMountainHero
           logoSrc={floatingLogo}
           backgroundSrc={mountainBg}
@@ -177,6 +229,41 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="tdm-shell pb-14">
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              { value: "24/7", label: "Disponibilité" },
+              { value: "< 20 min", label: "Accès Genève depuis Bonneville" },
+              { value: "100%", label: "Trajets personnalisés" },
+            ].map((item) => (
+              <article
+                key={item.label}
+                className="rounded-2xl border border-slate-200/90 bg-gradient-to-br from-white to-slate-50 p-6"
+              >
+                <p className="text-3xl font-black text-slate-950">{item.value}</p>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.08em] text-slate-500">
+                  {item.label}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-6 tdm-surface p-7">
+            <h2 className="tdm-display text-4xl text-slate-950">Zones desservies</h2>
+            <p className="mt-2 text-slate-600">
+              Un taxi local pour vos transferts professionnels, touristiques et privés en Haute-Savoie.
+            </p>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {serviceZones.map((zone) => (
+                <article key={zone.title} className="rounded-2xl border border-slate-200/80 bg-white p-5">
+                  <h3 className="text-lg font-black text-slate-950">{zone.title}</h3>
+                  <p className="mt-2 text-sm text-slate-600">{zone.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="tdm-shell grid gap-6 pb-14 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="tdm-surface p-7">
             <h2 className="tdm-display text-4xl text-slate-950">Pages de service</h2>
@@ -225,6 +312,25 @@ export default function Home() {
         </section>
 
         <section className="tdm-shell pb-14">
+          <div className="tdm-surface p-7">
+            <h2 className="tdm-display text-4xl text-slate-950">Questions fréquentes</h2>
+            <p className="mt-2 text-slate-600">
+              Les réponses rapides aux questions les plus demandées avant une réservation.
+            </p>
+            <div className="mt-6 grid gap-3">
+              {faqItems.map((item) => (
+                <details key={item.question} className="rounded-2xl border border-slate-200/85 bg-white p-5">
+                  <summary className="cursor-pointer list-none text-base font-black text-slate-950">
+                    {item.question}
+                  </summary>
+                  <p className="mt-3 text-sm text-slate-600">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="tdm-shell pb-14">
           <div className="on-dark tdm-surface-dark p-7 text-white">
             <h2 className="tdm-display text-4xl">Formulaire de réservation</h2>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -257,6 +363,7 @@ export default function Home() {
       </main>
 
       <SiteFooter />
+      <StickyMobileCta phone={phone} />
     </>
   );
 }

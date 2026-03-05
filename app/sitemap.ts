@@ -18,6 +18,7 @@ const routes = [
   "/ski-transfert",
   "/tarifs",
   "/reserver-en-ligne",
+  "/espace-client",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
